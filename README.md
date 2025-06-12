@@ -1,15 +1,42 @@
-# What is this?
+# E-Ticaret Demo Uygulaması
 
-The github.dev web-based editor is a lightweight editing experience that runs entirely in your browser. You can navigate files and source code repositories from GitHub, and make and commit code changes.
+Bu proje, temel bir e-ticaret backend API'sidir. Java, Spring Boot, H2 veritabanı ve Maven kullanılmıştır. Proje, ürün, kullanıcı ve sipariş yönetimi sağlar.
 
-There are two ways to go directly to a VS Code environment in your browser and start coding:
+## Özellikler
+- Ürün, kullanıcı ve sipariş CRUD işlemleri
+- Sipariş oluştururken stok kontrolü
+- H2 veritabanı ile hızlı test
+- RESTful API
+- Docker ile deploy edilebilir
 
-* Press the . key on any repository or pull request.
-* Swap `.com` with `.dev` in the URL. For example, this repo https://github.com/github/dev becomes http://github.dev/github/dev
+## Çalıştırma
 
-Preview the gif below to get a quick demo of github.dev in action.
+### Maven ile
+```bash
+mvn clean package
+java -jar target/ecommerce-demo-1.0.0.jar
+```
 
-![github dev](https://user-images.githubusercontent.com/856858/130119109-4769f2d7-9027-4bc4-a38c-10f297499e8f.gif)
+### Docker ile
+Önce jar dosyasını üretin:
+```bash
+mvn clean package
+```
+Sonra Docker imajı oluşturup çalıştırın:
+```bash
+docker build -t ecommerce-demo .
+docker run -p 8080:8080 ecommerce-demo
+```
 
-# Why?
-It’s a quick way to edit and navigate code. It's especially useful if you want to edit multiple files at a time or take advantage of all the powerful code editing features of Visual Studio Code when making a quick change. For more information, see our [documentation](https://github.co/codespaces-editor-help).
+## API Uç Noktaları
+- `/api/products` : Ürün işlemleri
+- `/api/users` : Kullanıcı işlemleri
+- `/api/orders` : Sipariş işlemleri
+
+## H2 Konsolu
+`http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:testdb`)
+
+## Notlar
+- Proje, Java 17 ile derlenmiştir.
+- Spring Boot 3.x kullanılmıştır.
+- Geliştirme ve test için uygundur.
